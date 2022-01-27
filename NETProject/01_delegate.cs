@@ -148,7 +148,8 @@ namespace NETProject
                 Console.WriteLine(op(10, 30));
             }
             // 제너릭 델리게이트 Generic Delegate
-            if (true)
+            // 템플릿의 delegate
+            if (false)
             {
                 // 1. 리턴이 없는 델리 게이트
                 // delegate void MyDelegates2(char ch);
@@ -175,14 +176,19 @@ namespace NETProject
                 p1("b");    // MyString 함수 실행
                 p2(2, 2);   // MyNumber 함수 실행 
             }
-            // 익명의 대리자 (Unknown delegate)
+            // 익명의 메소드 (Anonymous  Method)
+            // 1회성이고 짧을 때 사용 
             if (false)
             {
                 int ret = 0;
+                int ret2 = 0;
                 IntOp op = delegate (int a, int b) { if (b != 0) return a / b; else return 0; };
+                Func<int,int,int> op2 = delegate (int a, int b) { if (b != 0) return a / b; else return 0; };
                 //IntOp opp = Div;
                 ret = op(6, 3);
-                Console.WriteLine($"결과는{ret}입니다.");
+                ret2 = op2(9, 3);
+                Console.WriteLine($"나누기의 결과는{ret} 입니다.");
+                Console.WriteLine($"나누기의 결과는{ret2} 입니다.");
             }
         }
     }
