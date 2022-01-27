@@ -122,7 +122,7 @@ namespace NETProject
                 Console.WriteLine($"결과는{ret}입니다.");
             }
             // delegate : 배열로 활용하기 
-            if (true)
+            if (false)
             {
                 int a = 3, b = 5;
                 Console.Write("3, 5의 어떤 연산을 하고 싶습니까? (1:덧셈, 2:곱셈 3. 뺄셈)\n");
@@ -146,6 +146,34 @@ namespace NETProject
                 Console.WriteLine(op(10, 30));
                 op = op + Mul;  // op += Mul;
                 Console.WriteLine(op(10, 30));
+            }
+            // 제너릭 델리게이트 Generic Delegate
+            if (true)
+            {
+                // 1. 리턴이 없는 델리 게이트
+                // delegate void MyDelegates2(char ch);
+                //MyDelegates2 voidp;
+
+                // public delegate void Action();
+                // public delegate void Action<T>(T obj);
+                // public delegate void Action<in T1, in T2>(T1 arg1, T2 arg2);
+                // Action은 최대 인자 17개 까지 받아준다. 
+                Action<char>voidp = MyChar; // return이 없는 generic = Action 
+                voidp('a');
+
+                // 2. 리턴이 있는 델리 게이트
+                // delegate int IntOp(int a, int b);
+                // IntOp op;
+
+                // 맨 마지막 인자에 return type까지 적어준다.
+                // Func도 17종류 범용적 사용이 가능하다. 
+                Func<int,int,int> op = Add;
+                Console.WriteLine(op(10, 30));
+
+                Func<string, int> p1 = MyString;
+                Func<int, long, double> p2 = MyNumber;
+                p1("b");    // MyString 함수 실행
+                p2(2, 2);   // MyNumber 함수 실행 
             }
             // 익명의 대리자 (Unknown delegate)
             if (false)
