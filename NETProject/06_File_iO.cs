@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization.Formatters.Soap;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,6 +49,25 @@ namespace NETProject
             Console.WriteLine(a.Name);
             Console.WriteLine(a.Age);
             Console.WriteLine($"이름 : {a.Name}, 나이 : {a.Age}세");
+        }
+    }
+
+    [Serializable]
+    class HumanSeri
+    {
+        private string Name;
+        private int Age;
+        [NonSerialized] private float Temp; // 저장할 필요가 없는 임시 데이터
+        public HumanSeri(string aName, int aAge)
+        {
+            Name = aName;
+            Age = aAge;
+            Temp = 1.23f;
+        }
+
+        public void PrintHuman()
+        {
+            Console.WriteLine($"이름 : {Name}, 나이 : {Age}세");
         }
     }
 
@@ -146,7 +167,7 @@ namespace NETProject
                 fs.Close();
             }
             // BinaryReader : 읽기
-            if (true)
+            if (false)
             {
 
                 FileStream fs = new FileStream(@"c:\Temp\Hong.dat",   // file path
@@ -163,6 +184,61 @@ namespace NETProject
 
                 fs.Close();
             }
+            // 객체 직렬화 Binary Formatter 사용 : 쓰기
+            if (false)
+            {
+                HumanSeri Hong = new HumanSeri("홍길동", 28);
+
+                FileStream fs = new FileStream(@"c:\Temp\HongSeri.dat",   // file path
+                                                FileMode.Create,    // file mode
+                                                FileAccess.Write);  // file access
+                BinaryFormatter bf = new BinaryFormatter();
+
+                bf.Serialize(fs, Hong);
+                fs.Close();
+            }
+
+            // 객체 직렬화 Binary Formatter 사용 : 읽기
+            if (false)
+            {
+                FileStream fs = new FileStream(@"c:\Temp\HongSeri.dat",   // file path
+                                                FileMode.Open,    // file mode
+                                                FileAccess.Read);  // file access
+                BinaryFormatter bf = new BinaryFormatter();
+
+                HumanSeri Hong = (HumanSeri)bf.Deserialize(fs);
+                fs.Close();
+                Hong.PrintHuman();
+            }
+
+            // SoapFormatter 사용 : 쓰기
+            if (false)
+            {
+                HumanSeri Hong = new HumanSeri("홍길동", 28);
+
+                FileStream fs = new FileStream(@"c:\Temp\HongSoap.dat",   // file path
+                                                FileMode.Create,    // file mode
+                                                FileAccess.Write);  // file access
+                SoapFormatter sf = new SoapFormatter();
+
+                sf.Serialize(fs, Hong);
+                fs.Close();
+            }
+
+            // SoapFormatter 사용 : 읽기 
+            if (true)
+            {
+                FileStream fs = new FileStream(@"c:\Temp\HongSoap.dat",   // file path
+                                                FileMode.Open,    // file mode
+                                                FileAccess.Read);  // file access
+                SoapFormatter sf = new SoapFormatter();
+
+                HumanSeri Hong = (HumanSeri)sf.Deserialize(fs);
+                fs.Close();
+                Hong.PrintHuman();
+            }
         }
     }
+
+   
 }
