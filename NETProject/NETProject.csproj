@@ -47,7 +47,8 @@
     <None Include="02_Lamda.cs" />
     <None Include="03_dynamic.cs" />
     <None Include="04_Reflection.cs" />
-    <Compile Include="05_Attribute.cs" />
+    <None Include="05_Attribute.cs" />
+    <Compile Include="06_File_iO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
