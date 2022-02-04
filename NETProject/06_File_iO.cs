@@ -69,6 +69,11 @@ namespace NETProject
         {
             Console.WriteLine($"이름 : {Name}, 나이 : {Age}세");
         }
+        override public string ToString()
+        {
+            Console.WriteLine($"이름 : {Name}, 나이 : {Age}세");
+            return Name;
+        }
     }
 
     internal class _06_File_iO
@@ -236,6 +241,11 @@ namespace NETProject
                 HumanSeri Hong = (HumanSeri)sf.Deserialize(fs);
                 fs.Close();
                 Hong.PrintHuman();
+                Hong.ToString();
+                Console.WriteLine(Hong.ToString());
+
+                int a = 20;
+                Console.WriteLine(a.ToString());
             }
         }
     }

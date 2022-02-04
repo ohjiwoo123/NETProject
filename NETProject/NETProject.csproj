@@ -49,8 +49,11 @@
     <None Include="03_dynamic.cs" />
     <None Include="04_Reflection.cs" />
     <None Include="05_Attribute.cs" />
-    <Compile Include="06_File_iO.cs" />
+    <None Include="06_File_iO.cs" />
+    <None Include="07_Process.cs" />
+    <Compile Include="08_Thread.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="HongSeri.dat" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
